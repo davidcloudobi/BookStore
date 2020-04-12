@@ -60,7 +60,16 @@ namespace BookStore
                 });
 
 
-            services.AddSwaggerGen(setupAction =>
+            services.AddAuthentication("CookieAuth")
+                .AddCookie("CookieAuth", Config =>
+                {
+                    Config.Cookie.Name = "User.Cookie";
+                    Config.LoginPath = "/api/v1.0/Admin/login";
+                });
+        
+
+
+        services.AddSwaggerGen(setupAction =>
             {
                 setupAction.SwaggerDoc("User", new Microsoft.OpenApi.Models.OpenApiInfo()
                 {
@@ -136,8 +145,10 @@ namespace BookStore
             });
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
+           // app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
@@ -147,3 +158,10 @@ namespace BookStore
         }
     }
 }
+
+
+
+
+
+
+

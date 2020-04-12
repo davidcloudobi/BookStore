@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Library.Model.DTO;
 using Library.Model.Logic;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -41,6 +44,7 @@ namespace BookStore.Controllers
         /// Sample request (this request get the list of all the books)
         /// </remarks>
         /// <response code="200">Returns the list of books</response>
+        [Authorize]
         [HttpGet("books")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -79,7 +83,7 @@ namespace BookStore.Controllers
         /// </remarks>
         /// <param name="title"></param>
         /// <response code="200">Returns the list of books with the same title</response>
-
+        [Authorize]
         [HttpGet("books/title")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -119,7 +123,7 @@ namespace BookStore.Controllers
         /// </remarks>
         /// <param name="isbn"></param>
         /// <response code="200">Returns the list of books with the same Isbn</response>
-
+        [Authorize]
         [HttpGet("books/isbn")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -174,7 +178,7 @@ namespace BookStore.Controllers
         /// </remarks>
         /// <param name="newstatus"></param>
         /// <response code="200">Returns the list of books with the same status</response>
-
+        [Authorize]
         [HttpGet("books/status")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -226,7 +230,7 @@ namespace BookStore.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-
+        [Authorize]
         [HttpPost("borrow")]
         public async Task<IActionResult> Borrow(UserDTO user)
         {
@@ -260,7 +264,7 @@ namespace BookStore.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
 
-
+        [Authorize]
         [HttpPost("checkIn")]
         public async Task<IActionResult> CHeckIn(UserDTO user)
         {
@@ -294,7 +298,7 @@ namespace BookStore.Controllers
         /// <param name="phoneNumber"></param>
         /// <returns></returns>
 
-
+        [Authorize]
         [HttpPost("payment")]
         public async Task<IActionResult> PaymentFee(int phoneNumber)
         {
@@ -317,6 +321,29 @@ namespace BookStore.Controllers
             }
 
             return BadRequest("Something went wrong!");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="httpContextAccessor"></param>
+        /// <returns></returns>
+
+        [HttpPost("login")]
+
+        public IActionResult test(string role, string user)
+        {
+
+            var User = new List<Claim>()
+            {new Claim(ClaimTypes.Role , user),
+
+            };
+
+            var UserIdentity = new ClaimsIdentity(User, "User Identity");
+            var userPrincipal = new ClaimsPrincipal(new[] { UserIdentity });
+            HttpContext.SignInAsync(userPrincipal);
+
+            return Ok();
         }
     }
 }

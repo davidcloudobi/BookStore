@@ -26,6 +26,13 @@
             </remarks>
             <response code="200">Returns Ok response in respect to  the successive creation of a new book entity</response>
         </member>
+        <member name="M:BookStore.Controllers.AdminController.test(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="httpContextAccessor"></param>
+            <returns></returns>
+        </member>
         <member name="T:BookStore.Controllers.UserController">
             <summary>
             Version 1, User
@@ -103,6 +110,13 @@
             Post Payment
             </summary>
             <param name="phoneNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore.Controllers.UserController.test(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="httpContextAccessor"></param>
             <returns></returns>
         </member>
     </members>
