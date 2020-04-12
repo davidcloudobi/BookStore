@@ -47,7 +47,7 @@ namespace BookStore.Controllers
         /// Sample request (this request post a new book entity)
         /// </remarks>
         /// <response code="200">Returns Ok response in respect to  the successive creation of a new book entity</response>
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
