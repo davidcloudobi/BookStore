@@ -7,9 +7,9 @@ namespace Library.Model.EF
 {
    public class BookStoreDbContext:DbContext
     {
-        public  BookStoreDbContext(DbContextOptions options):base(options)
+        public BookStoreDbContext(DbContextOptions options) : base(options)
         {
-            
+
         }
 
         public DbSet<Book> Book { get; set; }

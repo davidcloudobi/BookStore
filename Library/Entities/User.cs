@@ -7,6 +7,7 @@ namespace Library.Entities
 {
     public partial class User
     {
+        
         public User()
         {
             History = new HashSet<History>();
