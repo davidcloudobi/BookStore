@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Library.Entities;
+using Library.Model.DTO;
 using Library.Model.Logic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -110,6 +111,8 @@ namespace BookStore
             services.AddScoped<IAdmin, Admin>();
             services.AddScoped<IUser, User>();
             services.AddScoped<BookStoreDbContext>();
+            services.AddScoped<UserDTO>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

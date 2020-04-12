@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Library.Entities;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 
 namespace Library.Model.Logic
@@ -18,20 +19,27 @@ namespace Library.Model.Logic
         }
         public async Task CreateBook(Book book)
         {
-            var status = await _bookStoreDb.Book.FirstOrDefaultAsync(response =>
-                response.Isbn == book.Isbn && book.PublishYear == response.PublishYear && response.Title == book.Title);
+            try
+            {
+                var status = await _bookStoreDb.Book.FirstOrDefaultAsync(response =>
+                    response.Isbn == book.Isbn && book.PublishYear == response.PublishYear && response.Title == book.Title);
 
-            if (status == null) 
-            {
-                _bookStoreDb.Book.Add(book);
-                _bookStoreDb.SaveChangesAsync().Wait();
+                if (status == null) 
+                {
+                    _bookStoreDb.Book.Add(book);
+                    _bookStoreDb.SaveChangesAsync().Wait();
+                }
+                else
+                {
+                    status.BookAvalaiblityCount++;
+                    _bookStoreDb.SaveChangesAsync().Wait();
+                }
+
             }
-            else
+            catch (Exception e)
             {
-                status.BookAvalaiblityCount++;
-                 _bookStoreDb.SaveChangesAsync().Wait();
+               Log.Error(e.Message);
             }
-           
 
            
         }

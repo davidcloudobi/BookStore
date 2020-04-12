@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Library.Entities;
+using Library.Model.DTO;
 using Library.Model.Logic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 
 namespace BookStore.Controllers
@@ -47,19 +49,28 @@ namespace BookStore.Controllers
         [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
         public async Task<IActionResult> CreateBook(Book book)
         {
-
-            if (ModelState.IsValid)
+            try
             {
-               await _admin.CreateBook(book);
 
-                return Ok("Successful");
+                if (ModelState.IsValid)
+                {
+                    await _admin.CreateBook(book);
 
+                    return Ok("Successful");
+
+                }
+            }
+            catch (Exception e)
+            {
+              Log.Error(e.Message);
             }
 
             return BadRequest("Invalid Book Details");
 
 
         }
+
+    
 
     }
 }

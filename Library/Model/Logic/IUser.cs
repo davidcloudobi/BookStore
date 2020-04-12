@@ -11,9 +11,10 @@ namespace Library.Model.Logic
         Task<IEnumerable<BookDTO>> GetBooks();
          Task<IEnumerable<BookDTO>> GetBookByTitle(string title);
          Task<IEnumerable<BookDTO>> GetBookByIsbn(string isbn);
-        Task<List<Book>> GetBooksByStatus();
-        bool BorrowBook();
-        bool BorrowBooks();
+        Task<IEnumerable<BookDTO>> GetBooksByStatus(bool status);
+        Task<bool> BorrowBook(UserDTO userDto);
+        Task<bool> CheckIn(UserDTO userDto);
+        Task<bool> PaymentFee(int phonenumber);
 
 
     }

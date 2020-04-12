@@ -31,7 +31,7 @@
             Version 1, User
             </summary>
         </member>
-        <member name="M:BookStore.Controllers.UserController.#ctor(Library.Model.Logic.IUser)">
+        <member name="M:BookStore.Controllers.UserController.#ctor(Library.Model.Logic.IUser,Library.Model.DTO.UserDTO)">
             <summary>
             
             </summary>
@@ -65,6 +65,45 @@
             </remarks>
             <param name="isbn"></param>
             <response code="200">Returns the list of books with the same Isbn</response>
+        </member>
+        <member name="M:BookStore.Controllers.UserController.GetBookByStatus(System.String)">
+            <summary>
+             Returns the list of books with the same status
+            </summary>
+            <remarks>
+            Sample request (this request get the list of all the books)
+            GET /User/books/status
+            
+            [ 
+                {
+                    
+                    "status": "available or not availiable" 
+                } 
+            ]
+            </remarks>
+            <param name="newstatus"></param>
+            <response code="200">Returns the list of books with the same status</response>
+        </member>
+        <member name="M:BookStore.Controllers.UserController.Borrow(Library.Model.DTO.UserDTO)">
+            <summary>
+            post request
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore.Controllers.UserController.CHeckIn(Library.Model.DTO.UserDTO)">
+            <summary>
+            Post CheckIn
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BookStore.Controllers.UserController.PaymentFee(System.Int32)">
+            <summary>
+            Post Payment
+            </summary>
+            <param name="phoneNumber"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>
