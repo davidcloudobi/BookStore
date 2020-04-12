@@ -8,8 +8,8 @@ namespace Library.Entities
     public partial class History
     {
         [Key]
-        public int Id { get; set; }
-        public int? BookId { get; set; }
+        public Guid Id { get; set; }
+        public Guid? BookId { get; set; }
         public Guid? UserId { get; set; }
         public DateTime? DateOfCheckOut { get; set; }
         public DateTime? DateOfReturn { get; set; }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Library.Migrations
 {
-    public partial class initial : Migration
+    public partial class Database : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,13 +11,13 @@ namespace Library.Migrations
                 name: "Book",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     ISBN = table.Column<string>(nullable: true),
-                    PublishYear = table.Column<string>(nullable: true),
+                    PublishYear = table.Column<int>(nullable: false),
                     CoverPrice = table.Column<double>(nullable: false),
-                    Status = table.Column<bool>(nullable: false)
+                    Status = table.Column<bool>(nullable: false),
+                    BookAvalaiblityCount = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,12 +44,11 @@ namespace Library.Migrations
                 name: "History",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookId = table.Column<int>(nullable: true),
+                    Id = table.Column<Guid>(nullable: false),
+                    BookId = table.Column<Guid>(nullable: true),
                     UserId = table.Column<Guid>(nullable: true),
-                    DateOfCheckOut = table.Column<string>(nullable: true),
-                    DateOfReturn = table.Column<string>(nullable: true),
+                    DateOfCheckOut = table.Column<DateTime>(nullable: true),
+                    DateOfReturn = table.Column<DateTime>(nullable: true),
                     PenaltyFee = table.Column<double>(nullable: false),
                     NumberOfDays = table.Column<int>(nullable: false)
                 },

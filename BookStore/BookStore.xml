@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BookStore</name>
+    </assembly>
+    <members>
+        <member name="T:BookStore.Controllers.AdminController">
+            <summary>
+            Version 1, Admin
+            </summary>
+        </member>
+        <member name="M:BookStore.Controllers.AdminController.#ctor(Library.Model.Logic.IAdmin)">
+            <summary>
+            Dependency injection for Admin logic  
+            </summary>
+            <param name="admin"></param>
+        </member>
+        <member name="M:BookStore.Controllers.AdminController.CreateBook(Library.Entities.Book)">
+            POST: api/Admin
+            <summary>
+            Create a book entity 
+            </summary>
+            <param name="book"></param>
+            <remarks>
+            Sample request (this request post a new book entity)
+            </remarks>
+            <response code="200">Returns Ok response in respect to  the successive creation of a new book entity</response>
+        </member>
+        <member name="T:BookStore.Controllers.UserController">
+            <summary>
+            Version 1, User
+            </summary>
+        </member>
+        <member name="M:BookStore.Controllers.UserController.#ctor(Library.Model.Logic.IUser)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+        </member>
+        <member name="M:BookStore.Controllers.UserController.GetBook">
+            <summary>
+             Return the list of the book entities
+            </summary>
+            <remarks>
+            Sample request (this request get the list of all the books)
+            </remarks>
+            <response code="200">Returns the list of books</response>
+        </member>
+        <member name="M:BookStore.Controllers.UserController.GetBookByTitle(System.String)">
+            <summary>
+             Returns the list of books with the same title
+            </summary>
+            <remarks>
+            Sample request (this request get the list of all the books)
+            </remarks>
+            <param name="title"></param>
+            <response code="200">Returns the list of books with the same title</response>
+        </member>
+        <member name="M:BookStore.Controllers.UserController.GetBookByIsbn(System.String)">
+            <summary>
+             Returns the list of books with the same Isbn
+            </summary>
+            <remarks>
+            Sample request (this request get the list of all the books)
+            </remarks>
+            <param name="isbn"></param>
+            <response code="200">Returns the list of books with the same Isbn</response>
+        </member>
+    </members>
+</doc>

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.Migrations
 {
     [DbContext(typeof(BookStoreDbContext))]
-    [Migration("20200411190916_initial")]
-    partial class initial
+    [Migration("20200412013935_Database")]
+    partial class Database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,10 +23,12 @@ namespace Library.Migrations
 
             modelBuilder.Entity("Library.Model.EF.Book", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("BookAvalaiblityCount")
+                        .HasColumnType("int");
 
                     b.Property<double>("CoverPrice")
                         .HasColumnType("float");
@@ -34,8 +36,8 @@ namespace Library.Migrations
                     b.Property<string>("ISBN")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PublishYear")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PublishYear")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -50,19 +52,18 @@ namespace Library.Migrations
 
             modelBuilder.Entity("Library.Model.EF.History", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("BookId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("BookId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("DateOfCheckOut")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("DateOfCheckOut")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("DateOfReturn")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("DateOfReturn")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("NumberOfDays")
                         .HasColumnType("int");
