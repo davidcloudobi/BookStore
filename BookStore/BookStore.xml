@@ -28,7 +28,7 @@
         </member>
         <member name="M:BookStore.Controllers.AdminController.test(System.String,System.String)">
             <summary>
-            
+            LOGIN TO HAVE ACCESS
             </summary>
             <param name="httpContextAccessor"></param>
             <returns></returns>
@@ -114,7 +114,7 @@
         </member>
         <member name="M:BookStore.Controllers.UserController.test(System.String,System.String)">
             <summary>
-            
+            LOGIN TO HAVE ACCESS
             </summary>
             <param name="httpContextAccessor"></param>
             <returns></returns>
