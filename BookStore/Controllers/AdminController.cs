@@ -78,9 +78,10 @@ namespace BookStore.Controllers
         /// <summary>
         /// LOGIN TO HAVE ACCESS
         /// </summary>
-        /// <param name="httpContextAccessor"></param>
+        /// <param name="role"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        
+
         [HttpPost("login")]
 
         public IActionResult test(string role, string user)

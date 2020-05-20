@@ -30,7 +30,8 @@
             <summary>
             LOGIN TO HAVE ACCESS
             </summary>
-            <param name="httpContextAccessor"></param>
+            <param name="role"></param>
+            <param name="user"></param>
             <returns></returns>
         </member>
         <member name="T:BookStore.Controllers.UserController">
